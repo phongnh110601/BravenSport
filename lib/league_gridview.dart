@@ -46,10 +46,8 @@ class _LeagueGridViewState extends State<LeagueGridView> {
             children: [
               StaggeredGridView.countBuilder(
                 scrollDirection: Axis.horizontal,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
                   itemCount: widget.listLeague.length,
-                  crossAxisCount: 3,
+                  crossAxisCount: 5,
                   itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
                           print("index: $index");
@@ -62,7 +60,8 @@ class _LeagueGridViewState extends State<LeagueGridView> {
                         ),
                       ),
                   staggeredTileBuilder: (index) => StaggeredTile.count(
-                      (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1)),
+                      (index % 18 == 0 && index != 0) ? 3 :((index == 0) ? 2 : ((index % 5 == 4) ? 2 : 1)),
+                      (index % 18 == 0 && index != 0) ? 3 :((index == 0) ? 2 : ((index % 5 == 4) ? 2 : 1)))),
               if (_count > 0)
                 GestureDetector(
                   onTap: () {

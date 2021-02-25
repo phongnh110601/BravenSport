@@ -19,11 +19,18 @@ class PlayerPage extends StatefulWidget {
 
 class _PlayerPageState extends State<PlayerPage> {
 
+  final _playerController = TextEditingController();
+  List<Player> filteredList = new List();
   List<Player> listPlayer = new List();
   @override
   void initState() {
     super.initState();
     addData();
+    filteredList = listPlayer;
+  }
+
+  void _filtered(String text){
+    filteredList = listPlayer.where((player) => player.name.toUpperCase().contains(text.toUpperCase())).toList();
   }
 
   @override
@@ -51,27 +58,24 @@ class _PlayerPageState extends State<PlayerPage> {
             Expanded(
               flex: 1,
               child: Container(
-                margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                    border: Border.all(color: Color(0xFF6E7E8C))),
-                padding: EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: Color(0xFF6E7E8C),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Search your favorite leagues',
-                      style: GoogleFonts.roboto(
-                          color: Color(0xFF6E7E8C), fontSize: 14),
-                    )
-                  ],
+                margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                child: TextFormField(
+                  onChanged:(text){
+                    print("text: $text");
+                    _filtered(text);
+                  },
+                  controller: _playerController,
+                  decoration: InputDecoration(
+                      hintText: 'Search your favorite players',
+                      hintStyle: TextStyle(fontSize: 14, color: Color(0xFF6E7E8C)),
+                      prefixIcon: Icon(Icons.search, color: Color(0xFF6E7E8C)),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(0xFF6E7E8C)
+                          ),
+                          borderRadius: BorderRadius.circular(30)
+                      )
+                  ),
                 ),
               ),
             ),
@@ -79,7 +83,7 @@ class _PlayerPageState extends State<PlayerPage> {
               flex: 9,
               child: Stack(
                 children: [
-                  PlayerGridView(listPlayer: listPlayer,)
+                  PlayerGridView(listPlayer: filteredList,)
                 ],
               ),
             )

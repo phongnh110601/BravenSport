@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,7 +12,7 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(7.5),
+      padding: EdgeInsets.all(5),
       child: Stack(
         children: [
           AspectRatio(
@@ -24,8 +25,8 @@ class ItemCard extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 4,
-                    child: Padding(
-                      padding: EdgeInsets.all(2),
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                       child: Text(
                         this.name,
                         style: GoogleFonts.roboto(
@@ -37,11 +38,14 @@ class ItemCard extends StatelessWidget {
                   ),
                   Expanded(
                       flex: 6,
-                      child: Padding(
-                          padding: EdgeInsets.all(10),
-                          child: SvgPicture.asset(
-                            this.image,
-                            fit: BoxFit.fill,
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                          child: AspectRatio(
+                            aspectRatio: 1/1,
+                            child: SvgPicture.asset(
+                              this.image,
+                              fit: BoxFit.fill,
+                            ),
                           )))
                 ],
               ),

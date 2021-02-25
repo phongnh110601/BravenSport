@@ -18,15 +18,25 @@ class CompetitorPage extends StatefulWidget {
 
 class _CompetitorPageState extends State<CompetitorPage> {
   List<League> listLeague = new List();
+  List<League> filteredList = new List();
+  final _leagueController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     addData();
+    filteredList = listLeague;
+  }
+
+  void _filtered(String text){
+    setState(() {
+      filteredList = listLeague.where((league) => league.name.toUpperCase().contains(text.toUpperCase())).toList();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xFFE5E5E5),
@@ -50,27 +60,24 @@ class _CompetitorPageState extends State<CompetitorPage> {
             Expanded(
               flex: 1,
               child: Container(
-                margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                    border: Border.all(color: Color(0xFF6E7E8C))),
-                padding: EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: Color(0xFF6E7E8C),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Search your favorite leagues',
-                      style: GoogleFonts.roboto(
-                          color: Color(0xFF6E7E8C), fontSize: 14),
+                margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                child: TextFormField(
+                  onChanged:(text){
+                    print("text: $text");
+                    _filtered(text);
+                  },
+                  controller: _leagueController,
+                  decoration: InputDecoration(
+                    hintText: 'Search your favorite leagues',
+                    hintStyle: TextStyle(fontSize: 14, color: Color(0xFF6E7E8C)),
+                    prefixIcon: Icon(Icons.search, color: Color(0xFF6E7E8C)),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xFF6E7E8C)
+                      ),
+                      borderRadius: BorderRadius.circular(30)
                     )
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -78,7 +85,7 @@ class _CompetitorPageState extends State<CompetitorPage> {
               flex: 9,
               child: Stack(
                 children: [
-                  LeagueGridView(listLeague: listLeague),
+                  LeagueGridView(listLeague: filteredList),
 
                 ],
               ),
@@ -118,6 +125,15 @@ class _CompetitorPageState extends State<CompetitorPage> {
     listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
     listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
     listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
+    listPlayerMc.add(new Player('ederson', 'assets/vectors/path56 1.svg', false));
     listPlayer.add(degea);
     listPlayer.add(vidic);
     listPlayer.add(evra);
@@ -130,6 +146,15 @@ class _CompetitorPageState extends State<CompetitorPage> {
     listPlayer.add(tevez);
     listPlayer.add(fletcher);
     listPlayer.add(cantona);
+    listPlayer.add(rooney);
+    listPlayer.add(rooney);
+    listPlayer.add(rooney);
+    listPlayer.add(rooney);
+    listPlayer.add(rooney);
+    listPlayer.add(rooney);
+    listPlayer.add(rooney);
+    listPlayer.add(rooney);
+    listPlayer.add(rooney);
     listPlayer.add(rooney);
     Teams mu = new Teams('manchester united', listPlayer, 'assets/vectors/path56 1.svg', false);
     Teams mc = new Teams('manchester city', listPlayerMc, 'assets/vectors/path56 1.svg', false);
@@ -158,12 +183,30 @@ class _CompetitorPageState extends State<CompetitorPage> {
     listTeam.add(norwich);
     listTeam.add(stoke);
     listTeam.add(leicester);
+    listTeam.add(leicester);
+    listTeam.add(leicester);
+    listTeam.add(leicester);
+    listTeam.add(leicester);
+    listTeam.add(leicester);
+    listTeam.add(leicester);
+    listTeam.add(leicester);
+    listTeam.add(leicester);
+    listTeam.add(leicester);
     listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
     listLeague.add(new League('la liga', 'assets/vectors/path56 1.svg', false, listTeam));
     listLeague.add(new League('champions League', 'assets/vectors/path56 1.svg', false, listTeam));
     listLeague.add(new League('Europa League', 'assets/vectors/path56 1.svg', false, listTeam));
     listLeague.add(new League('Ligue 1', 'assets/vectors/path56 1.svg', false, listTeam));
     listLeague.add(new League('Serie A', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
+    listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
     listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
     listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));
     listLeague.add(new League('premier League', 'assets/vectors/path56 1.svg', false, listTeam));

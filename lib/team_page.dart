@@ -17,11 +17,20 @@ class TeamsPage extends StatefulWidget {
 
 class _TeamsPageState extends State<TeamsPage> {
 
+  final _teamController = TextEditingController();
   List<Teams> listTeams = new List();
+  List<Teams> filteredList = new List();
   @override
   void initState() {
     super.initState();
     addData();
+    filteredList = listTeams;
+  }
+
+  void _filtered(String text){
+    setState(() {
+      filteredList = listTeams.where((team) => team.name.toUpperCase().contains(text.toUpperCase())).toList();
+    });
   }
 
   @override
@@ -37,7 +46,7 @@ class _TeamsPageState extends State<TeamsPage> {
                 margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                 alignment: Alignment.center,
                 child: Text(
-                  'Select your favorite leagues',
+                  'Select your favorite teams',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
@@ -49,27 +58,24 @@ class _TeamsPageState extends State<TeamsPage> {
             Expanded(
               flex: 1,
               child: Container(
-                margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                    border: Border.all(color: Color(0xFF6E7E8C))),
-                padding: EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: Color(0xFF6E7E8C),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Search your favorite leagues',
-                      style: GoogleFonts.roboto(
-                          color: Color(0xFF6E7E8C), fontSize: 14),
-                    )
-                  ],
+                margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                child: TextFormField(
+                  onChanged:(text){
+                    print("text: $text");
+                    _filtered(text);
+                  },
+                  controller: _teamController,
+                  decoration: InputDecoration(
+                      hintText: 'Search your favorite leagues',
+                      hintStyle: TextStyle(fontSize: 14, color: Color(0xFF6E7E8C)),
+                      prefixIcon: Icon(Icons.search, color: Color(0xFF6E7E8C)),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color(0xFF6E7E8C)
+                          ),
+                          borderRadius: BorderRadius.circular(30)
+                      )
+                  ),
                 ),
               ),
             ),
@@ -77,7 +83,7 @@ class _TeamsPageState extends State<TeamsPage> {
               flex: 9,
               child: Stack(
                 children: [
-                  TeamsGridView(listTeam: listTeams,)
+                  TeamsGridView(listTeam: filteredList,)
                 ],
               ),
             )

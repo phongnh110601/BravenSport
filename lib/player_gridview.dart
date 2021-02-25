@@ -49,10 +49,8 @@ class _PlayerGridViewState extends State<PlayerGridView> {
             children: [
               StaggeredGridView.countBuilder(
                   scrollDirection: Axis.horizontal,
-                  mainAxisSpacing: 5,
-                  crossAxisSpacing: 5,
                   itemCount: widget.listPlayer.length,
-                  crossAxisCount: 3,
+                  crossAxisCount: 5,
                   itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
                           print("index: $index");
@@ -65,7 +63,8 @@ class _PlayerGridViewState extends State<PlayerGridView> {
                         ),
                       ),
                   staggeredTileBuilder: (index) => StaggeredTile.count(
-                      (index % 7 == 0) ? 2 : 1, (index % 7 == 0) ? 2 : 1)),
+                      (index % 18 == 0 && index != 0) ? 3 :((index == 0) ? 2 : ((index % 5 == 4) ? 2 : 1)),
+                      (index % 18 == 0 && index != 0) ? 3 :((index == 0) ? 2 : ((index % 5 == 4) ? 2 : 1)))),
               GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
