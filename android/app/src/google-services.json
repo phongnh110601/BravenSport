@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "392311729078",
+    "project_id": "braven-sport-de783",
+    "storage_bucket": "braven-sport-de783.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392311729078:android:6c7e7718216ea97d8aef17",
+        "android_client_info": {
+          "package_name": "com.nhpva.demo_180121_bloc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "392311729078-5s2hplv6abtfl7g0jrsgpsnfbmcircgk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADvDbnBN83Ai1sFZ0ZbBQf7qLh1TuwdbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "392311729078-5s2hplv6abtfl7g0jrsgpsnfbmcircgk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
